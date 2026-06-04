@@ -42,7 +42,7 @@ function Products() {
     try {
       const API_BASE_URL = import.meta.env.DEV 
         ? "http://localhost:5000" 
-        : "https://multirising-1.onrender.com";
+        : "https://multirising-exports-website2026.onrender.com";
 
       const [productsRes, categoriesRes] = await Promise.all([
         fetch(`${API_BASE_URL}/api/products`),

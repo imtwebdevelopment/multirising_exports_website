@@ -24,7 +24,7 @@ function ProductDetails() {
       setLoading(true);
       const API_BASE_URL = import.meta.env.DEV 
         ? "http://localhost:5000" 
-        : "https://multirising-1.onrender.com";
+        : "https://multirising-exports-website2026.onrender.com";
       const response = await fetch(`${API_BASE_URL}/api/products/${id}`);
       if (response.ok) {
         const data = await response.json();
@@ -44,7 +44,7 @@ function ProductDetails() {
     try {
       const API_BASE_URL = import.meta.env.DEV 
         ? "http://localhost:5000" 
-        : "https://multirising-1.onrender.com";
+        : "https://multirising-exports-website2026.onrender.com";
       const response = await fetch(`${API_BASE_URL}/api/products`);
       const data = await response.json();
       const shuffled = data

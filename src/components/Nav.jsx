@@ -15,7 +15,7 @@ const NavbarComponent = () => {
       try {
         const API_BASE_URL = import.meta.env.DEV 
           ? "http://localhost:5000" 
-          : "https://multirising-1.onrender.com";
+          : "https://multirising-exports-website2026.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/categories`);
         const data = await response.json();
         setCategories(data.map((cat) => cat.name));

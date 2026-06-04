@@ -6,7 +6,7 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 export default function ContactUs() {
   const API_URL = import.meta.env.DEV 
     ? "http://localhost:5000" 
-    : "https://multirising-1.onrender.com";
+    : "https://multirising-exports-website2026.onrender.com";
 
   useEffect(() => {
     window.scrollTo(0, 0);
