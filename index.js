@@ -110,7 +110,7 @@ app.get("/api/image/:id", async (req, res) => {
 
     const objectId = new mongoose.Types.ObjectId(id);
     const files = await mongoose.connection.db.collection("images.files").find({ _id: objectId }).toArray();
-    
+
     if (!files || files.length === 0) {
       return res.status(404).json({ error: "Image not found" });
     }
