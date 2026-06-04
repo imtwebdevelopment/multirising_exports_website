@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import multer from "multer";
+import sendBulkOrderHandler from "./api/send-bulk-order.js";
 
 dotenv.config();
 
@@ -65,6 +66,8 @@ app.use(cors());
 app.use(express.json());
 
 // Payment and Shipping Integrations Removed
+app.post("/api/send-bulk-order", sendBulkOrderHandler);
+
 
 // 📁 Image Upload & Retrieval Endpoints (GridFS)
 app.post("/api/upload", upload.single("image"), (req, res) => {
