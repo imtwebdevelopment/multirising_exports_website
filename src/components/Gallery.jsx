@@ -6,9 +6,11 @@ import dry from "../assets/process/dry.png"
 import cut from "../assets/process/cut.png"
 import wash from "../assets/process/wash.png"
 import pack from "../assets/process/pack.png"
+import "./css/loading .css";
 
 const PhotoGallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +26,8 @@ const PhotoGallery = () => {
         }
       } catch (error) {
         console.error("Error fetching gallery images:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchGallery();
@@ -39,7 +43,7 @@ const PhotoGallery = () => {
     { url: pack, text: "Packing Process" }
   ];
 
-  const displayImages = galleryItems.length > 0 
+  const displayImages = galleryItems.length > 0
     ? galleryItems.map(item => ({ url: item.imageUrl, text: item.caption || "" }))
     : fallbackImages;
 
@@ -48,18 +52,26 @@ const PhotoGallery = () => {
       <h2 className="main-heading" data-aos="fade-up">
         Our Gallery
       </h2>
-      <div className="row g-4">
-        {displayImages.map((item, index) => (
-          <div className="col-md-3 col-sm-6" key={index}>
-            <div className="gallery-box">
-              <img src={item.url} alt="" className="img-fluid" />
-              <div className="overlay">
-                <h5>{item.text}</h5>
+
+      {loading ? (
+        <div className="loading-container mt-5">
+          <div className="loader"></div>
+          <p>Loading gallery images...</p>
+        </div>
+      ) : (
+        <div className="row g-4">
+          {displayImages.map((item, index) => (
+            <div className="col-md-3 col-sm-6" key={index}>
+              <div className="gallery-box">
+                <img src={item.url} alt="" className="img-fluid" />
+                <div className="overlay">
+                  <h5>{item.text}</h5>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
