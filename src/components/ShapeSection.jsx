@@ -44,7 +44,7 @@ export default function ShapesSection() {
               <Card
   className="product-card shadow-sm border-0 brand-card-hover"
   data-aos="fade-up"
-  data-aos-delay={item * 200}
+  data-aos-delay={index * 200}
 >
                 <div style={{ overflow: "hidden" }}>
                   <Card.Img
