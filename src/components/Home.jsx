@@ -8,7 +8,7 @@ import ShapesSection from "./ShapeSection";
 import '../components/css/home.css'
 
 import frame2 from "../assets/frame2.png"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 
 import ContactSection from "./ContactHome";
@@ -31,6 +31,53 @@ const HeroSection = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [categoriesData, setCategoriesData] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/categories");
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setCategoriesData(data);
+        }
+      } catch (error) {
+        console.error("Error fetching categories on home:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const fallbackCategories = [
+    {
+      name: "Jute Products",
+      description: "Premium eco-friendly jute bags and craft items.",
+      image: "https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Bamboo Products",
+      description: "Sustainable bamboo kitchenware and products.",
+      image: "https://images.unsplash.com/photo-1618330834371-d68a9b3d16ce?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Leather Products",
+      description: "Exquisite handcrafted pure leather goods.",
+      image: "https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
+  const displayCategories = categoriesData.length > 0
+    ? categoriesData.map(cat => ({
+        name: cat.name,
+        description: cat.name.toLowerCase().includes("jute")
+          ? "Premium eco-friendly jute bags and craft items."
+          : cat.name.toLowerCase().includes("bamboo")
+            ? "Sustainable bamboo kitchenware and products."
+            : "Exquisite handcrafted pure leather goods.",
+        image: cat.image || "https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=600&q=80"
+      }))
+    : fallbackCategories;
 
   return (
     <section className="home-page">
@@ -121,23 +168,7 @@ const HeroSection = () => {
         </h2>
 
         <Row className="g-4 mt-3">
-          {[
-            {
-              name: "Jute",
-              description: "Premium eco-friendly jute bags and craft items.",
-              image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-              name: "Bamboo",
-              description: "Sustainable bamboo kitchenware and products.",
-              image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-              name: "Leather",
-              description: "Exquisite handcrafted pure leather goods.",
-              image: "https://images.unsplash.com/photo-1590874082522-832db217e7bb?auto=format&fit=crop&w=600&q=80"
-            }
-          ].map((cat, idx) => (
+          {displayCategories.map((cat, idx) => (
             <Col md={4} key={cat.name}>
               <Card
                 className="product-card shadow-sm border-0 brand-card-hover"
@@ -232,16 +263,6 @@ const HeroSection = () => {
       </Container>
 
 
-      <ShapesSection />
-
-
-      <Container fluid className="p-0">
-        <img
-          src={frame2}
-          alt="Banner"
-          className="frame-banner"
-        />
-      </Container>
       {/* WHY CHOOSE US */}
       <Container className="py-5 text-center">
         <h2 className="fw-bold brand-title mb-4">Why Choose Multirising Exports</h2>
