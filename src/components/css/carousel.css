@@ -1,0 +1,70 @@
+.scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.scroll-track {
+  display: flex;
+  gap: 40px; /* space between items */
+   width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.scroll-track > * {
+  flex-shrink: 0;
+}
+
+/* Country item */
+.country-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Image */
+.scroll-image {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Country name */
+.country-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Smooth infinite scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* scroll exactly half of the total duplicated items */
+  }
+}
+
+.hero-section {
+  width: 100%;
+  max-width: 1200px; /* limits the width */
+  margin: 0 auto; /* center horizontally */
+  height: 300px; /* smaller height */
+  overflow: hidden;
+  border-radius: 15px; /* optional rounded corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* optional shadow */
+}
+
+.hero-section .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* scales the image nicely */
+  transition: transform 0.5s ease;
+}
+
+/* optional subtle zoom on hover */
+.hero-section:hover .hero-img {
+  transform: scale(1.05);
+}

@@ -1,0 +1,45 @@
+.feature-card{
+  transition:0.3s;
+  text-align:center;
+  padding:25px;
+}
+
+.feature-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 25px rgba(0,0,0,0.15);
+}
+
+.feature-icons,
+.feature-icon {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px auto;
+
+  border-radius: 50%;
+  border: 2px solid #e9f5ec;
+  background: #fff;
+}
+
+/* Icon size */
+.feature-icons svg {
+  font-size: 42px;
+  color: #6beb21;
+}
+
+/* Image inside circle */
+.feature-icon {
+  object-fit: cover;
+}
+@media (max-width:768px){
+
+.feature-icon{
+  width:70px;
+  height:70px;
+}
+
+}

@@ -1,0 +1,21 @@
+.user-dropdown-menu .dropdown-menu {
+  width: 260px;
+  padding: 10px;
+}
+
+.social-icon {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 18px;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  background-color: #fff;
+  color: #000;
+}
+
