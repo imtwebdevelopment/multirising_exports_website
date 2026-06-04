@@ -114,27 +114,49 @@ const HeroSection = () => {
       </Container>
 
 
-      {/* FEATURED PRODUCTS */}
+      {/* OUR CATEGORIES */}
       <Container className="py-5 text-center">
         <h2 className="fw-bold brand-title">
-          Featured Products
+          Our Categories
         </h2>
 
         <Row className="g-4 mt-3">
-          {[1, 2, 3].map((item) => (
-            <Col md={4} key={item}>
+          {[
+            {
+              name: "Jute",
+              description: "Premium eco-friendly jute bags and craft items.",
+              image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+              name: "Bamboo",
+              description: "Sustainable bamboo kitchenware and products.",
+              image: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+              name: "Leather",
+              description: "Exquisite handcrafted pure leather goods.",
+              image: "https://images.unsplash.com/photo-1590874082522-832db217e7bb?auto=format&fit=crop&w=600&q=80"
+            }
+          ].map((cat, idx) => (
+            <Col md={4} key={cat.name}>
               <Card
                 className="product-card shadow-sm border-0 brand-card-hover"
                 data-aos="fade-up"
-                data-aos-delay={item * 200}
+                data-aos-delay={String((idx + 1) * 200)}
+                onClick={() => navigate(`/products?category=${encodeURIComponent(cat.name)}`)}
+                style={{ cursor: "pointer" }}
               >
-                <Card.Img
-                  variant="top"
-                  src="https://agrileaf.in/wp-content/uploads/2024/04/7xm.xyz288434-1280x821.jpg"
-                />
+                <div style={{ overflow: "hidden", height: "240px" }}>
+                  <Card.Img
+                    variant="top"
+                    src={cat.image}
+                    style={{ height: "100%", objectFit: "cover", transition: "transform 0.4s ease" }}
+                    className="product-img"
+                  />
+                </div>
                 <Card.Body>
-                  <h6 className="fw-bold text-success">Areca Leaf Plate</h6>
-                  <p className="text-muted">Eco-friendly disposable plate</p>
+                  <h5 className="fw-bold text-success mt-2">{cat.name}</h5>
+                  <p className="text-muted">{cat.description}</p>
                 </Card.Body>
               </Card>
             </Col>
@@ -142,10 +164,10 @@ const HeroSection = () => {
         </Row>
 
         <Button
-          className="shop-btn brand-btn mt-3"
+          className="shop-btn brand-btn mt-4"
           onClick={() => navigate("/products")}
         >
-          Shop All Products →
+          View All Products →
         </Button>
       </Container>
 
