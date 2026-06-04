@@ -17,7 +17,7 @@ function Products() {
   const categoryParam = searchParams.get("category") || "";
 
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(["Jute", "Bamboo", "Leather"]);
   const [loading, setLoading] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -91,59 +91,6 @@ function Products() {
   return (
 
     <div className="products-page-wrapper">
-
-      {/* HERO BANNER */}
-
-      <div className="hero-banner-container">
-
-        <img
-          src={panner}
-          alt="Banner"
-          className="hero-banner"
-          data-aos="fade-down"
-        />
-
-        <div className="hero-overlay">
-
-          <div className="hero-text" data-aos="fade-right">
-
-          <h1 
-  className="fw-bold display-4 text-white"
-  style={{ 
-    color: "#1a1a1a",
-    textShadow: "2px 2px 6px rgba(0,0,0,0.3)"
-  }}
->
-  🌿 Discover Natural & Eco Products
-</h1>
-
-<p 
-  className="fw-bold fs-5 text-white"
-  style={{ 
-    color: "#333",
-    textShadow: "1px 1px 4px rgba(0,0,0,0.25)"
-  }}
->
-  Sustainable, eco-friendly products crafted with care.
-  Shop natural items that are good for you and the planet.
-</p>
-
-            <button
-              className="shop-btn"
-              onClick={() =>
-                document
-                  .querySelector(".main-heading")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Explore Products
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
 
       {/* PRODUCTS SECTION */}
 

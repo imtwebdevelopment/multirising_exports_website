@@ -8,7 +8,7 @@ import { FaEnvelope, FaPhone } from "react-icons/fa";
 const NavbarComponent = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(["Jute", "Bamboo", "Leather"]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -87,18 +87,20 @@ const NavbarComponent = () => {
                 Home
               </Nav.Link>
 
+              <Nav.Link as={NavLink} to="/about" className="nav-item-custom px-4">
+                About Us
+              </Nav.Link>
+
               <NavDropdown
-                title="Products"
+                title="Categories"
                 id="products-dropdown"
                 className="px-4 nav-item-custom"
                 show={showDropdown}
                 onMouseEnter={() => setShowDropdown(true)}
                 onMouseLeave={() => setShowDropdown(false)}
               >
-                <NavDropdown.Item as={NavLink} to="/products">
-                  All Products
-                </NavDropdown.Item>
-                {(categories.length > 0 ? categories : ["Plates", "Bowls", "Trays", "Spoons"]).map((cat) => (
+
+                {(categories.length > 0 ? categories : ["Jute", "Bamboo", "Leather"]).map((cat) => (
                   <NavDropdown.Item
                     key={cat}
                     as={NavLink}
@@ -113,9 +115,6 @@ const NavbarComponent = () => {
                 Gallery
               </Nav.Link>
 
-              <Nav.Link as={NavLink} to="/about" className="nav-item-custom px-4">
-                About Us
-              </Nav.Link>
               <Nav.Link as={NavLink} to="/contact" className="nav-item-custom px-4">
                 Contact Us
               </Nav.Link>
