@@ -3,9 +3,7 @@ import { useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 export default function ContactSection() {
-  const API_URL = import.meta.env.DEV
-    ? "http://localhost:5000"
-    : "https://multirising-exports-website2026.onrender.com";
+  const API_URL = "https://multirising-exports-website2026.onrender.com";
 
   const [formData, setFormData] = useState({
     name: "",

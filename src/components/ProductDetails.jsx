@@ -22,9 +22,7 @@ function ProductDetails() {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const API_BASE_URL = import.meta.env.DEV 
-        ? "http://localhost:5000" 
-        : "https://multirising-exports-website2026.onrender.com";
+      const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
       const response = await fetch(`${API_BASE_URL}/api/products/${id}`);
       if (response.ok) {
         const data = await response.json();
@@ -42,17 +40,19 @@ function ProductDetails() {
   // Fetch suggestions
   const fetchSuggestions = async () => {
     try {
-      const API_BASE_URL = import.meta.env.DEV 
-        ? "http://localhost:5000" 
-        : "https://multirising-exports-website2026.onrender.com";
+      const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
       const response = await fetch(`${API_BASE_URL}/api/products`);
       const data = await response.json();
-      const shuffled = data
-        .map(p => ({ id: p._id, ...p }))
-        .filter(p => p.id !== id)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 4);
-      setSuggestions(shuffled);
+      if (Array.isArray(data)) {
+        const shuffled = data
+          .map(p => ({ id: p._id, ...p }))
+          .filter(p => p.id !== id)
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 4);
+        setSuggestions(shuffled);
+      } else {
+        console.error("Suggestions response is not an array:", data);
+      }
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }

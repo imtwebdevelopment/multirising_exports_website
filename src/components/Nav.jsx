@@ -13,12 +13,14 @@ const NavbarComponent = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const API_BASE_URL = import.meta.env.DEV 
-          ? "http://localhost:5000" 
-          : "https://multirising-exports-website2026.onrender.com";
+        const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
         const response = await fetch(`${API_BASE_URL}/api/categories`);
         const data = await response.json();
-        setCategories(data.map((cat) => cat.name));
+        if (Array.isArray(data)) {
+          setCategories(data.map((cat) => cat.name));
+        } else {
+          console.error("Categories response is not an array:", data);
+        }
       } catch (error) {
         console.error("Error fetching categories in Nav:", error);
       }

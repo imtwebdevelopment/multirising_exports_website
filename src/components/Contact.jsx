@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 export default function ContactUs() {
-  const API_URL = import.meta.env.DEV 
-    ? "http://localhost:5000" 
-    : "https://multirising-exports-website2026.onrender.com";
+  const API_URL = "https://multirising-exports-website2026.onrender.com";
 
   useEffect(() => {
     window.scrollTo(0, 0);

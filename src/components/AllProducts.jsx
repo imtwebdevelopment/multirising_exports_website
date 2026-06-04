@@ -40,9 +40,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const API_BASE_URL = import.meta.env.DEV 
-        ? "http://localhost:5000" 
-        : "https://multirising-exports-website2026.onrender.com";
+      const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
 
       const [productsRes, categoriesRes] = await Promise.all([
         fetch(`${API_BASE_URL}/api/products`),
@@ -52,13 +50,21 @@ function Products() {
       const productsData = await productsRes.json();
       const categoriesData = await categoriesRes.json();
 
-      const formattedProducts = productsData.map((p) => ({
-        id: p._id,
-        ...p
-      }));
+      if (Array.isArray(productsData)) {
+        const formattedProducts = productsData.map((p) => ({
+          id: p._id,
+          ...p
+        }));
+        setProducts(formattedProducts);
+      } else {
+        console.error("Products response is not an array:", productsData);
+      }
 
-      setProducts(formattedProducts);
-      setCategories(categoriesData.map((c) => c.name));
+      if (Array.isArray(categoriesData)) {
+        setCategories(categoriesData.map((c) => c.name));
+      } else {
+        console.error("Categories response is not an array:", categoriesData);
+      }
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
