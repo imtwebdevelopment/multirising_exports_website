@@ -1,5 +1,5 @@
 import heroImage from "../assets/palm.jpg";
-import plate from "../assets/plates.webp";
+import logo from "../assets/logo.png";
 import { Row, Col, Image, Container } from "react-bootstrap";
 import { useEffect } from "react";
 
@@ -66,8 +66,8 @@ export default function About() {
         <Row className="align-items-center g-4">
           
           {/* Image */}
-          <Col xs={12} md={6}>
-            <Image src={plate} fluid rounded className="shadow" />
+          <Col xs={12} md={6} className="text-center">
+            <Image src={logo} fluid className="p-3" style={{ maxHeight: "350px", objectFit: "contain" }} />
           </Col>
 
           {/* Text */}
