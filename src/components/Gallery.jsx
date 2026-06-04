@@ -8,25 +8,25 @@ import wash from "../assets/process/wash.png"
 import pack from "../assets/process/pack.png"
 
 const PhotoGallery = () => {
-  const [products, setProducts] = useState([]);
+  const [galleryItems, setGalleryItems] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchGallery = async () => {
       try {
-        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/products");
+        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/gallery");
         const data = await response.json();
         if (Array.isArray(data)) {
-          setProducts(data);
+          setGalleryItems(data);
         }
       } catch (error) {
-        console.error("Error fetching products for gallery:", error);
+        console.error("Error fetching gallery images:", error);
       }
     };
-    fetchProducts();
+    fetchGallery();
   }, []);
 
   const fallbackImages = [
@@ -39,29 +39,15 @@ const PhotoGallery = () => {
     { url: pack, text: "Packing Process" }
   ];
 
-  // Gather all unique images from products
-  const dynamicImages = products.flatMap(p => {
-    const list = [];
-    if (p.image) {
-      list.push({ url: p.image, text: p.name });
-    }
-    if (Array.isArray(p.images)) {
-      p.images.forEach(img => {
-        if (img && img !== p.image) {
-          list.push({ url: img, text: p.name });
-        }
-      });
-    }
-    return list;
-  });
-
-  const displayImages = dynamicImages.length > 0 ? dynamicImages : fallbackImages;
+  const displayImages = galleryItems.length > 0 
+    ? galleryItems.map(item => ({ url: item.imageUrl, text: item.caption || "" }))
+    : fallbackImages;
 
   return (
-    <div className="container my-5 "  style={{paddingTop:"40px"}}>
+    <div className="container my-5 " style={{ paddingTop: "40px" }}>
       <h2 className="main-heading" data-aos="fade-up">
-         Our Gallery
-        </h2>
+        Our Gallery
+      </h2>
       <div className="row g-4">
         {displayImages.map((item, index) => (
           <div className="col-md-3 col-sm-6" key={index}>

@@ -61,6 +61,14 @@ const ProductSchema = new mongoose.Schema({
 }, { collection: "products" });
 const Product = mongoose.model("Product", ProductSchema);
 
+const GallerySchema = new mongoose.Schema({
+  imageUrl: { type: String, required: true },
+  caption: { type: String },
+  createdAt: { type: Date, default: Date.now }
+}, { collection: "gallery" });
+const Gallery = mongoose.model("Gallery", GallerySchema);
+
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -295,6 +303,37 @@ app.delete("/api/products/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// 🖼️ Gallery CRUD
+app.get("/api/gallery", async (req, res) => {
+  try {
+    const galleryItems = await Gallery.find().sort({ createdAt: -1 });
+    res.json(galleryItems);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post("/api/gallery", async (req, res) => {
+  try {
+    const { imageUrl, caption } = req.body;
+    const galleryItem = new Gallery({ imageUrl, caption });
+    await galleryItem.save();
+    res.json(galleryItem);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete("/api/gallery/:id", async (req, res) => {
+  try {
+    await Gallery.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Gallery item deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 /* 🚀 Start Server */
 const PORT = process.env.PORT || 5000;
