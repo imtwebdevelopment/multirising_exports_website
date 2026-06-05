@@ -334,6 +334,20 @@ app.delete("/api/gallery/:id", async (req, res) => {
   }
 });
 
+app.put("/api/gallery/:id", async (req, res) => {
+  try {
+    const { imageUrl, caption } = req.body;
+    const galleryItem = await Gallery.findByIdAndUpdate(
+      req.params.id,
+      { imageUrl, caption },
+      { new: true }
+    );
+    res.json(galleryItem);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 /* 🚀 Start Server */
 const PORT = process.env.PORT || 5000;
