@@ -8,13 +8,18 @@ import { FaEnvelope, FaPhone } from "react-icons/fa";
 const NavbarComponent = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
-  const [categories, setCategories] = useState(["Jute", "Bamboo", "Leather"]);
+  const [categories, setCategories] = useState(["Jute Products", "Bamboo Products", "Leather Products"]);
 
   useEffect(() => {
     const fetchCategories = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
       try {
         const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
-        const response = await fetch(`${API_BASE_URL}/api/categories`);
+        const response = await fetch(`${API_BASE_URL}/api/categories`, {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
         const data = await response.json();
         if (Array.isArray(data)) {
           setCategories(data.map((cat) => cat.name));
@@ -22,7 +27,11 @@ const NavbarComponent = () => {
           console.error("Categories response is not an array:", data);
         }
       } catch (error) {
-        console.error("Error fetching categories in Nav:", error);
+        if (error.name === "AbortError") {
+          console.warn("Fetch categories in Nav timed out.");
+        } else {
+          console.error("Error fetching categories in Nav:", error);
+        }
       }
     };
     fetchCategories();
@@ -100,7 +109,7 @@ const NavbarComponent = () => {
                 onMouseLeave={() => setShowDropdown(false)}
               >
 
-                {(categories.length > 0 ? categories : ["Jute", "Bamboo", "Leather"]).map((cat) => (
+                {(categories.length > 0 ? categories : ["Jute Products", "Bamboo Products", "Leather Products"]).map((cat) => (
                   <NavDropdown.Item
                     key={cat}
                     as={NavLink}

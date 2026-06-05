@@ -6,7 +6,7 @@ import dry from "../assets/process/dry.png"
 import cut from "../assets/process/cut.png"
 import wash from "../assets/process/wash.png"
 import pack from "../assets/process/pack.png"
-import "./css/loading .css";
+import "./css/loading.css";
 
 const PhotoGallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
@@ -18,14 +18,23 @@ const PhotoGallery = () => {
 
   useEffect(() => {
     const fetchGallery = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
       try {
-        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/gallery");
+        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/gallery", {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
         const data = await response.json();
         if (Array.isArray(data)) {
           setGalleryItems(data);
         }
       } catch (error) {
-        console.error("Error fetching gallery images:", error);
+        if (error.name === "AbortError") {
+          console.warn("Fetch gallery timed out. Falling back to default images.");
+        } else {
+          console.error("Error fetching gallery images:", error);
+        }
       } finally {
         setLoading(false);
       }

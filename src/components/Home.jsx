@@ -36,14 +36,23 @@ const HeroSection = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
       try {
-        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/categories");
+        const response = await fetch("https://multirising-exports-website2026.onrender.com/api/categories", {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
         const data = await response.json();
         if (Array.isArray(data)) {
           setCategoriesData(data);
         }
       } catch (error) {
-        console.error("Error fetching categories on home:", error);
+        if (error.name === "AbortError") {
+          console.warn("Fetch categories on home timed out.");
+        } else {
+          console.error("Error fetching categories on home:", error);
+        }
       }
     };
     fetchCategories();

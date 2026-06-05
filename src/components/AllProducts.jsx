@@ -8,7 +8,33 @@ import "aos/dist/aos.css";
 
 import panner from "../assets/productbanner.png";
 import "./css/product.css";
-import "./css/loading .css";
+import "./css/loading.css";
+
+const fallbackProducts = [
+  {
+    id: "jute-bag-1",
+    name: "Premium Eco-Friendly Jute Bag",
+    category: "Jute Products",
+    image: "https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&w=600&q=80",
+    description: "Premium eco-friendly jute bags and craft items."
+  },
+  {
+    id: "bamboo-mug-1",
+    name: "Sustainable Bamboo Mug",
+    category: "Bamboo Products",
+    image: "https://images.unsplash.com/photo-1618330834371-d68a9b3d16ce?auto=format&fit=crop&w=600&q=80",
+    description: "Sustainable bamboo kitchenware and products."
+  },
+  {
+    id: "leather-goods-1",
+    name: "Handcrafted Pure Leather Wallet",
+    category: "Leather Products",
+    image: "https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=600&q=80",
+    description: "Exquisite handcrafted pure leather goods."
+  }
+];
+
+const fallbackCategories = ["Jute Products", "Bamboo Products", "Leather Products"];
 
 function Products() {
 
@@ -17,7 +43,7 @@ function Products() {
   const categoryParam = searchParams.get("category") || "";
 
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState(["Jute", "Bamboo", "Leather"]);
+  const [categories, setCategories] = useState(fallbackCategories);
   const [loading, setLoading] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -39,14 +65,17 @@ function Products() {
   }, []);
 
   const fetchProducts = async () => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
     try {
       const API_BASE_URL = "https://multirising-exports-website2026.onrender.com";
 
       const [productsRes, categoriesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/api/products`),
-        fetch(`${API_BASE_URL}/api/categories`)
+        fetch(`${API_BASE_URL}/api/products`, { signal: controller.signal }),
+        fetch(`${API_BASE_URL}/api/categories`, { signal: controller.signal })
       ]);
 
+      clearTimeout(timeoutId);
       const productsData = await productsRes.json();
       const categoriesData = await categoriesRes.json();
 
@@ -58,15 +87,23 @@ function Products() {
         setProducts(formattedProducts);
       } else {
         console.error("Products response is not an array:", productsData);
+        setProducts(fallbackProducts);
       }
 
       if (Array.isArray(categoriesData)) {
         setCategories(categoriesData.map((c) => c.name));
       } else {
         console.error("Categories response is not an array:", categoriesData);
+        setCategories(fallbackCategories);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
+      if (error.name === "AbortError") {
+        console.warn("Fetch products/categories timed out. Falling back to local default data.");
+      } else {
+        console.error("Error fetching products:", error);
+      }
+      setProducts(fallbackProducts);
+      setCategories(fallbackCategories);
     } finally {
       setLoading(false);
     }
@@ -82,7 +119,11 @@ function Products() {
       product.name?.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesCategory =
-      selectedCategory ? product.category === selectedCategory : true;
+      selectedCategory
+        ? (product.category === selectedCategory ||
+          product.category?.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+          selectedCategory.toLowerCase().includes(product.category?.toLowerCase()))
+        : true;
 
     return matchesSearch && matchesCategory;
 
