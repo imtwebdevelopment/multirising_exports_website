@@ -18,7 +18,7 @@ import Terms from "./components/legal/Terms";
 import ShippingPolicy from "./components/legal/ShippingPolicy";
 import RefundPolicy from "./components/legal/RefundPolicy";
 import ContactUs from "./components/Contact";
-// Blog import removed
+import Blog from "./components/Blog";
 import { FaWhatsapp, FaPhone, FaCommentDots } from "react-icons/fa";
 
 
@@ -112,8 +112,7 @@ function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
-        {/* Blog route removed */}
-
+        <Route path="/blog" element={<Blog />} />
       </Routes>
 
       <Footer />

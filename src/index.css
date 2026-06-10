@@ -1,21 +1,34 @@
-.home-page {
-  background: linear-gradient(135deg, #f4fff6, #e3f5e9);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+  --color-navy: #072146;
+  --color-red: #b30e12;
+  --color-gold: #c5a880;
+  --color-bg-light: #f4f6f8;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Overwrite existing brand colors */
+  --brand-blue: #072146;
+  --brand-red: #b30e12;
+  --brand-green: #c5a880;
 }
-body{
-   background: linear-gradient(135deg, #f4fff6, #e3f5e9);
+
+.home-page {
+  background: #ffffff;
 }
 body {
+  font-family: var(--font-sans);
+  background: #ffffff;
   margin: 0;
   padding: 0;
-}
-body {
-  padding-top: 180px;
+  padding-top: 140px; /* adjusted for the double-decker navbar */
 }
 
 @media (max-width: 991px){
   body {
-  padding-top: 100px;
-}
+    padding-top: 100px;
+  }
 }
 
 .topbar{
@@ -249,13 +262,13 @@ body {
 }
 
 .price {
-  color: #2e7d32;
+  color: var(--color-red);
   font-weight: 600;
   margin-bottom: 10px;
 }
 
 .add-btn {
-  background: linear-gradient(45deg, #2e7d32, #66bb6a);
+  background: linear-gradient(45deg, var(--color-navy), var(--color-red));
   border: none;
   padding: 6px 18px;
   border-radius: 50px;
@@ -264,7 +277,7 @@ body {
 }
 
 .add-btn:hover {
-  background: linear-gradient(45deg, #1b5e20, #43a047);
+  background: linear-gradient(45deg, var(--color-red), var(--color-navy));
 }
 
 /* Auth */
@@ -531,9 +544,9 @@ body {
 }
 /* Brand Colors (from your logo) */
 :root {
-  --brand-blue: #003b73;
-  --brand-red: #d62828;
-  --brand-green: #4caf50;
+  --brand-blue: #072146;
+  --brand-red: #b30e12;
+  --brand-green: #c5a880;
 }
 
 /* HERO */
@@ -594,16 +607,16 @@ body {
 /* UNIVERSAL WEBSITE HEADING */
 
 .main-heading{
-font-size:34px;
-font-weight:700;
-text-align:center;
-color:#0239d1;
-margin-bottom:40px;
-
+  font-family: var(--font-serif);
+  font-size:34px;
+  font-weight:700;
+  text-align:center;
+  color: var(--color-navy);
+  margin-bottom:40px;
 }
 
 .main-heading span{
-color:#ffffff;
+  color: var(--color-red);
 }
 
 .main-heading::after{
@@ -611,7 +624,7 @@ content:"";
 display:block;
 width:80px;
 height:4px;
-background:#28a745;   /* attractive green line */
+background:var(--color-gold);   /* attractive gold line */
 margin:10px auto 0;
 border-radius:3px;
 }
@@ -686,7 +699,7 @@ color:black;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #198754, #28a745);
+  background: linear-gradient(135deg, var(--color-navy), var(--color-red));
   color: #fff;
   border: none;
   font-size: 22px;
@@ -748,7 +761,7 @@ color:black;
 /* Call */
 .call-float {
   bottom: 70px;
-  background: #28a745;
+  background: var(--color-navy);
 }
 
 /* WhatsApp */
@@ -802,7 +815,7 @@ color:black;
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: #28a745;
+  background: var(--color-navy);
   color: white;
   font-size: 28px;
   font-weight: bold;
@@ -812,4 +825,232 @@ color:black;
   justify-content: center;
 
   margin: auto;
+}
+
+/* ==========================================================================
+   NEW NAVBAR STYLES OVERRIDES
+   ========================================================================== */
+
+/* Top bar style overrides */
+.topbar {
+  background: var(--color-navy) !important;
+  color: white;
+  font-size: 13px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.topbar-contact a {
+  transition: color 0.3s ease;
+}
+.topbar-contact a:hover {
+  color: var(--color-gold) !important;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.social-link-facebook {
+  color: #1877F2 !important;
+}
+
+.social-link-linkedin {
+  color: #0A66C2 !important;
+}
+
+.social-link-instagram {
+  color: #E1306C !important;
+}
+
+
+/* Main Navbar override */
+.main-navbar {
+  top: 40px !important; /* sit directly below the topbar */
+  background-color: #ffffff !important;
+  transition: all 0.3s ease;
+  min-height: 80px;
+  padding: 10px 0;
+}
+
+.navbar-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-btn-quote {
+  background-color: var(--color-red) !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: white !important;
+  font-family: var(--font-sans);
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 10px 24px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 10px rgba(179, 14, 18, 0.2);
+}
+
+.brand-btn-quote:hover {
+  background-color: var(--color-navy) !important;
+  box-shadow: 0 6px 15px rgba(7, 33, 70, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Nav links styling */
+.navbar-nav .nav-link {
+  font-family: var(--font-sans) !important;
+  color: var(--color-navy) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px !important;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--color-red) !important;
+}
+
+/* Active Link Red Underline */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  background-color: var(--color-red) !important;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--color-red) !important;
+  font-weight: 700;
+}
+
+.navbar-nav .nav-link.active::after {
+  width: 30px; /* Centered, thick red line */
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 30px;
+}
+
+/* Dropdown override */
+.navbar .dropdown-menu {
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.dropdown-menu .dropdown-item {
+  color: var(--color-navy) !important;
+  font-weight: 500;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  color: var(--color-red) !important;
+  background-color: var(--color-bg-light) !important;
+  padding-left: 24px;
+}
+
+.dropdown-menu .dropdown-item.active {
+  color: var(--color-red) !important;
+  background-color: var(--color-bg-light) !important;
+  border-left: 4px solid var(--color-red) !important;
+}
+
+/* Mobile responsive padding adjustments */
+@media (max-width: 991px) {
+  .main-navbar {
+    top: 40px !important;
+    padding: 5px 0;
+    min-height: 60px;
+  }
+  
+  .navbar-logo {
+    height: 45px;
+  }
+  
+  .navbar-nav .nav-link::after {
+    display: none !important; /* Hide line under mobile menu */
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 10px 0 !important;
+  }
+}
+
+/* Global Bootstrap overrides to migrate green success utilities to new palette */
+.text-success {
+  color: var(--color-navy) !important;
+}
+
+.border-success {
+  border-color: var(--color-gold) !important;
+}
+
+.btn-success {
+  background-color: var(--color-red) !important;
+  border-color: var(--color-red) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: var(--color-navy) !important;
+  border-color: var(--color-navy) !important;
+  color: #ffffff !important;
+}
+
+.bg-success {
+  background-color: var(--color-navy) !important;
+}
+
+.brand-btn-catalog {
+  background-color: transparent !important;
+  border: 2px solid var(--color-gold) !important;
+  border-radius: 4px !important;
+  color: var(--color-navy) !important;
+  font-family: var(--font-sans);
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 8px 20px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.brand-btn-catalog:hover {
+  background-color: var(--color-navy) !important;
+  color: white !important;
+  border-color: var(--color-navy) !important;
+  box-shadow: 0 6px 15px rgba(7, 33, 70, 0.25);
+  transform: translateY(-1px);
 }

@@ -52,7 +52,7 @@ margin-bottom:25px;
 }
 
 .shop-btn{
-background:#28a745;
+background:var(--color-navy);
 border:none;
 padding:12px 30px;
 border-radius:30px;
@@ -62,7 +62,7 @@ transition:0.3s;
 }
 
 .shop-btn:hover{
-background:#1e7e34;
+background:var(--color-red);
 transform:translateY(-2px);
 }
 
@@ -156,7 +156,7 @@ margin-bottom:4px;
 
 .product-price{
 font-weight:700;
-color:#28a745;
+color:var(--color-red);
 }
 
 .product-description{
@@ -189,7 +189,7 @@ gap:2px;
 }
 
 .rating-stars i{
-color:#28a745;
+color:var(--color-gold);
 font-size:0.75rem;
 }
 
@@ -221,20 +221,26 @@ transition:0.3s;
 }
 
 .category-btn:hover{
-background:#28a745;
+background:var(--color-red);
 color:white;
 }
 
 .category-btn.active{
-background:#28a745;
+background:var(--color-navy);
 color:white;
 }
 
 .products-section{
-background: linear-gradient(135deg,#5f776b,#b8ecd0);
+background: linear-gradient(135deg, var(--color-navy), #13396d);
 padding:50px;
+}
 
+.products-section .main-heading {
+  color: #ffffff !important;
+}
 
+.products-section .main-heading span {
+  color: var(--color-gold) !important;
 }
 
 .products-section .section-title{
@@ -293,3 +299,56 @@ left:18px;
 color:#6c757d;
 z-index:2;
 }
+
+/* ==========================================================================
+   ACCORDION / FAQ STYLING
+   ========================================================================== */
+.faq-section {
+  background-color: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.faq-accordion .accordion-item {
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 8px !important;
+  margin-bottom: 15px !important;
+  overflow: hidden;
+  background-color: #f8f9fa !important;
+  transition: all 0.3s ease;
+}
+
+.faq-accordion .accordion-item:focus-within,
+.faq-accordion .accordion-item:hover {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 4px 12px rgba(197, 168, 128, 0.1);
+  background-color: #ffffff !important;
+}
+
+.faq-accordion .accordion-button {
+  background-color: transparent !important;
+  color: var(--color-navy) !important;
+  font-family: var(--font-sans);
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  padding: 18px 24px !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  color: var(--color-red) !important;
+}
+
+.faq-accordion .accordion-button::after {
+  filter: sepia(100%) hue-rotate(10deg) saturate(200%);
+}
+
+.faq-accordion .accordion-body {
+  padding: 0 24px 20px 24px !important;
+  font-family: var(--font-sans);
+  color: #4a5568 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+  background-color: transparent !important;
+}
+

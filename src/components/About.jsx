@@ -43,19 +43,25 @@ export default function About() {
           <div className="text-center mt-3">
             <h2  className="fw-bold border-bottom border-3 border-success d-inline-block brand-title pb-2">About Us</h2>
 
-            <p className="text-muted mx-auto" style={{ maxWidth: "900px" }}>
-              At Multirising Exports, we are committed to delivering eco-friendly
-              and sustainable alternatives to traditional disposable tableware.
-              Our premium areca palm leaf products are crafted from naturally
-              fallen leaves, ensuring zero harm to trees and the environment.
-               We specialize in manufacturing high-quality biodegradable plates,
-              bowls, and trays that are durable, chemical-free, and completely
-              compostable. Every product is carefully washed and heat-pressed
-              without chemicals, preserving the natural strength and texture.
-               Our mission is to promote sustainable living by providing
-              environmentally responsible solutions for homes, businesses, and
-              global export markets.
-            </p>
+            <div className="text-muted mx-auto text-start" style={{ maxWidth: "900px", lineHeight: "1.8", fontSize: "1.05rem" }}>
+              <p className="mb-4">
+                At Multirising Exports, we believe sustainability is not simply a choice — it is a way of life, gracefully reflected through timeless design and conscious craftsmanship.
+              </p>
+              <p className="mb-4">
+                Inspired by a vision to redefine natural and handcrafted products beyond their conventional identity, we transform jute, bamboo, and traditional Shantinikethan leather craftsmanship into refined creations that embody elegance, functionality, and understated sophistication.
+              </p>
+              <p className="mb-4">
+                Every piece we create is a harmonious expression of artisanal excellence, thoughtful design, and enduring style — from eco-luxury jute handbags and handcrafted bamboo décor to authentic Shantinikethan leather collections and curated gifting solutions, each crafted to be treasured for years to come.
+              </p>
+              <p className="mb-4">
+                Deeply rooted in India’s rich artistic heritage, we proudly collaborate with skilled artisans from underprivileged communities, preserving traditional craftsmanship while fostering empowerment, dignity, and sustainable livelihoods.
+              </p>
+              <p className="mb-4 fw-semibold text-dark text-center" style={{ fontStyle: "italic" }}>
+                At the heart of our philosophy lies a simple yet powerful belief:<br />
+                that small, mindful choices can inspire meaningful change —<br />
+                for people, for tradition, and for the planet.
+              </p>
+            </div>
             
           </div>
         </Container>
@@ -75,7 +81,7 @@ export default function About() {
             <div className="mb-4 text-center text-md-start">
               <h4  className="fw-bold border-bottom border-3 border-success d-inline-block brand-title pb-2">Our Quality Assurance</h4>
               <p className="text-muted">
-                We ensure consistent quality in all our areca leaf products.
+                We ensure consistent quality in all our products.
                 Every item is hygienically processed following international
                 standards.
               </p>

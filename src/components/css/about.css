@@ -67,8 +67,8 @@
 .brand-title {
   font-size: 28px;
   font-weight: 700;
-  color: #0239d1;
-  border-bottom: 3px solid #28a745;
+  color: var(--color-navy);
+  border-bottom: 3px solid var(--color-gold);
   display: inline-block;
   padding-bottom: 5px;
 }

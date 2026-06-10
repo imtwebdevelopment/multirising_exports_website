@@ -33,11 +33,11 @@ const Footer = () => {
               style={{ width: "200px" }}
             />
 
-           {/* Social Media */}
- <p className="mt-4 fs-5 mx-auto description-text">
-  Eco-friendly areca leaf products made from natural leaves. <br />
-  Designed for quality, durability, and elegant serving.
-</p>
+            {/* Social Media */}
+            <p className="mt-4 fs-5 mx-auto description-text">
+              Premium exporter of high-quality, eco-friendly Bamboo, Jute, and Leather products. <br />
+              Designed for quality, durability, and elegant sustainability.
+            </p>
           </Col>
 
           {/* Quick Links */}
@@ -49,10 +49,11 @@ const Footer = () => {
             <ul className="footer-links">
 
               <li><Link to="/" className="text-white fs-5">Home</Link></li>
-              <li><Link to="/products" className="text-white fs-5">Products</Link></li>
               <li><Link to="/about" className="text-white fs-5">About Us</Link></li>
-                <li><Link to="/blog" className="text-white fs-5">Blog</Link></li>
-           
+              <li><Link to="/products" className="text-white fs-5">Products</Link></li>
+              <li><Link to="/gallery" className="text-white fs-5">Gallery</Link></li>
+              <li><Link to="/blog" className="text-white fs-5">Blog</Link></li>
+              <li><Link to="/contact" className="text-white fs-5">Contact Us</Link></li>
 
             </ul>
 
@@ -66,18 +67,18 @@ const Footer = () => {
 
             <p className="fs-5">
               <FaEnvelope className="me-2" />
-             support@multirisingexports.com
+              support@multirisingexports.com
             </p>
 
             <p className="fs-5">
-             <FaPhone style={{ transform: "rotate(90deg)", marginRight: "8px" }} />
+              <FaPhone style={{ transform: "rotate(90deg)", marginRight: "8px" }} />
               +91 76192 10277
             </p>
 
             <p className="fs-5">
               <FaMapMarkerAlt className="me-2" />
 
-             Bengaluru, Karnataka - 560070
+              Bengaluru, Karnataka - 560070
 
             </p>
 
@@ -104,55 +105,55 @@ const Footer = () => {
 
         {/* Social Media */}
 
-      <div className="text-center mb-4 mt-3">
+        <div className="text-center mb-4 mt-3 footer-social-icons">
 
-  <a href="#" className="me-3 text-white fs-5">
-    <FaFacebookF />
-  </a>
+          <a href="#" className="me-3 fs-5 social-icon-facebook">
+            <FaFacebookF />
+          </a>
 
-  <a href="https://www.instagram.com/multirisingexports?igsh=MTYwNW5qZjY5d3lycQ==" className="me-3 text-white fs-5">
-    <FaInstagram />
-  </a>
+          <a href="https://www.instagram.com/multirisingexports?igsh=MTYwNW5qZjY5d3lycQ==" className="me-3 fs-5 social-icon-instagram">
+            <FaInstagram />
+          </a>
 
-  <a href="#" className="me-3 text-white fs-5">
-    <FaLinkedin />
-  </a>
+          <a href="#" className="me-3 fs-5 social-icon-linkedin">
+            <FaLinkedin />
+          </a>
 
-  <a  href="#" className="text-white fs-5">
-  <FaXTwitter />
-</a>
+          <a href="#" className="fs-5 social-icon-twitter">
+            <FaXTwitter />
+          </a>
 
-</div>
+        </div>
 
         <hr className="footer-line" />
 
-    <div className="container border-top py-3">
-  <div className="row align-items-center">
-    
-    {/* Left Side */}
-    <div className="col-md-6 text-center text-md-start">
-      <small className="text-white">
-        © {new Date().getFullYear()} Multirising Exports. All Rights Reserved.
-      </small>
-    </div>
+        <div className="container border-top py-3">
+          <div className="row align-items-center">
 
-    {/* Right Side */}
-    <div className="col-md-6 text-center text-md-end">
-      <small className="text-white">
-        Powered By{" "}
-        <a 
-          href="https://www.innomatricstech.com/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="fw-bold text-decoration-none text-white"
-        >
-          Innomatrics Tech
-        </a>
-      </small>
-    </div>
+            {/* Left Side */}
+            <div className="col-md-6 text-center text-md-start">
+              <small className="text-white">
+                © {new Date().getFullYear()} Multirising Exports. All Rights Reserved.
+              </small>
+            </div>
 
-  </div>
-</div>
+            {/* Right Side */}
+            <div className="col-md-6 text-center text-md-end">
+              <small className="text-white">
+                Powered By{" "}
+                <a
+                  href="https://www.innomatricstech.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="fw-bold text-decoration-none text-white"
+                >
+                  Innomatrics Tech
+                </a>
+              </small>
+            </div>
+
+          </div>
+        </div>
 
       </Container>
 

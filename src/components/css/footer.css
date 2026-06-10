@@ -1,5 +1,5 @@
 .footer-section {
-  background-color: #2f4f3f;  /* deep eco green */
+  background-color: var(--color-navy);  /* deep navy blue */
   color: #ffffff;
 }
 
@@ -19,11 +19,11 @@ transition:0.3s;
 }
 
 .footer-links a:hover{
-color:#0f9d7a;
+  color: var(--color-red);
 }
 
 .footer-social a:hover{
-color:#0f9d7a;
+  color: var(--color-gold);
 }
 
 .footer-line{
@@ -96,4 +96,42 @@ margin:20px 0;
     max-width: 100%;
     text-align: left;
   }
+}
+
+/* ==========================================================================
+   ORIGINAL BRAND COLORS FOR SOCIAL ICONS
+   ========================================================================== */
+.footer-social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.footer-social-icons a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon-facebook {
+  color: #1877F2 !important;
+}
+
+.social-icon-instagram {
+  color: #E1306C !important;
+}
+
+.social-icon-linkedin {
+  color: #0A66C2 !important;
+}
+
+.social-icon-twitter {
+  color: #ffffff !important;
 }
